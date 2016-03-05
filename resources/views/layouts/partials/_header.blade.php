@@ -26,13 +26,15 @@
 					</div>
 				</form>
 			</div>-->
-			<form class="input-group" id="adv-search">
-				<input type="text" class="form-control" placeholder="Buscar">
-				<div class="input-group-btn">
-					<div class="btn-group" role="group">
-						<button type="submit" class="btn btn-primary">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						</button>
+			<form id="adv-search">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Buscar">
+					<div class="input-group-btn">
+						<div class="btn-group" role="group">
+							<button type="submit" class="btn btn-primary">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</button>
+						</div>
 					</div>
 				</div>
 			</form>
