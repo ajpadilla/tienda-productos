@@ -16,16 +16,26 @@
 				<li><a href="#">Profile</a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
-			<div class="col-sm-3 col-md-3 col-lg-3 pull-left">
-				<form class="navbar-form" role="search">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-						</div>
+			<!--<div class="col-sm-6 col-md-6 col-lg-6 col-lg-push-2">
+				<form class="navbar-form" style="width:80%" role="search">
+					<div style="display:table;" class="input-group">
+						<input type="text" autofocus="autofocus" autocomplete="off" placeholder="Search Here" name="search" style="" class="form-control">
+						<span style="width: 1%;" class="input-group-addon">
+							<span class="glyphicon glyphicon-search"></span>
+						</span>
 					</div>
 				</form>
-			</div>
+			</div>-->
+			<form class="input-group" id="adv-search">
+				<input type="text" class="form-control" placeholder="Buscar">
+				<div class="input-group-btn">
+					<div class="btn-group" role="group">
+						<button type="submit" class="btn btn-primary">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </nav>
