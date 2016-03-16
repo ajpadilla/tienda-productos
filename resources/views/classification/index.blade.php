@@ -77,16 +77,22 @@
 
 		<modal :show.sync="showCustomModal" effect="fade" width="400">
 			<div slot="modal-header" class="modal-header">
-				<h4 class="modal-title">
-					<i>Custom</i> <code>Modal</code> <b>Title</b>
-				</h4>
+				<button type="button" class="close" @click='showCustomModal=false'>
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title">Crear Nueva Clasificación</h4>
 			</div>
-			<div slot="modal-body" class="modal-body">Algo</div>
+			<div slot="modal-body" class="modal-body">
+				<div class="form-group">
+					<input class="form-control " type="text" placeholder="Nombre">
+				</div>
+			</div>
 			<div slot="modal-footer" class="modal-footer">
-				<button type="button" class="btn btn-default" @click='showCustomModal = false'>Exit</button>
-				<button type="button" class="btn btn-success" @click='showCustomModal = false'>Custom Save</button>
+				<button type="button" class="btn btn-primary" @click='showCustomModal=false'>Crear</button>
+				<button type="button" class="btn btn-danger" @click='showCustomModal=false'>Cancelar</button>
 			</div>
 		</modal>
+
 	</div>
 </div>
 
