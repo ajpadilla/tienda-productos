@@ -27,5 +27,10 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
+	
+	//Route for products
     Route::get('admin/products', 'ProductController@index');
+
+    //Route for classification
+    Route::get('admin/classification', 'ClassificationController@index');
 });
