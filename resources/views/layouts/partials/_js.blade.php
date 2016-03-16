@@ -3,4 +3,5 @@
 <script type="text/javascript"  src="{{ URL::asset('js/vue.js') }}"></script>
 <script type="text/javascript"  src="{{ URL::asset('js/node_modules/vue-strap/dist/vue-strap.min.js') }}"></script>
 <script type="text/javascript"  src="{{ URL::asset('js/app.js') }}"></script>
+<script type="text/javascript"  src="{{ URL::asset('js/node_modules/vue-resource/dist/vue-resource.min.js') }}"></script>
 
