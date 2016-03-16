@@ -5,14 +5,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Store\Classification\ClassificationRepository;
 use App\Http\Requests\StoreClassificationRequest;
+use App\Store\Classification\ClassificationRepository;
 
 class ClassificationController extends Controller
 {
 
-	protected $userRepository;
+	protected $repository;
 
-    public function __construct(UserRepository $userRepository) {
-    	$this->userRepository = $userRepository;
+    public function __construct(ClassificationRepository $repository) {
+    	$this->repository = $repository;
     }
 
     public function index()
