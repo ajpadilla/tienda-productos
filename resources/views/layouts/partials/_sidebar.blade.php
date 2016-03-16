@@ -17,12 +17,10 @@
 				</ul>
 
 				<li data-toggle="collapse" data-target="#service" class="collapsed">
-					<a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+					<a href="#"><i class="fa fa-globe fa-lg"></i> Classification <span class="arrow"></span></a>
 				</li>  
 				<ul class="sub-menu collapse" id="service">
-					<li>New Service 1</li>
-					<li>New Service 2</li>
-					<li>New Service 3</li>
+					<li>Index</li>
 				</ul>
 
 
