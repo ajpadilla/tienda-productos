@@ -11,9 +11,13 @@
 	@include("layouts.partials._header")
 	<div class="container-fluid">
 		<div class="row">
-			@include('layouts.partials._sidebar')
+			<div class="col-sm-3 col-md-2">
+				@include('layouts.partials._sidebar')
+			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				@yield('content')
+				<div id="content">
+					@yield('content')
+				</div>
 			</div>
 		</div>
 	</div>
