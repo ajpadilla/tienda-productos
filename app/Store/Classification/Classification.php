@@ -1,13 +1,10 @@
-
 <?php
 
 namespace App\Store\Classification;
 
-use App\Store\Base\BaseRepository;
-
 use Illuminate\Database\Eloquent\Model;
 
-class Classification extends BaseRepository
+class Classification extends Model
 {
-	protected $fillable = ['name'];
+    protected $fillable = ['name'];
 }
