@@ -153,6 +153,7 @@ body {
 
 .main {
     padding: 20px;
+    margin-left: 250px;
 }
 
 @media (min-width: 768px){
@@ -186,6 +187,73 @@ body {
     }
 }
 
-.top-head{
+#content{
   margin: 40px 0 20px;
+}
+
+#content .content-title {
+    color: #666666;
+    display: block;
+    font-family: 'Open Sans';
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    margin: 5px 0;
+    padding: 0;
+}
+
+#content .page-header .description {
+    color: #888888;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0;
+    margin-bottom: 5px;
+}
+
+.box.border, .box.solid {
+    border-radius: 4px;
+}
+.box {
+    clear: both;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    padding: 0px;
+}
+
+.box.border.green {
+    border: 1px solid #9db36a;
+}
+
+.box.border.green > .box-title {
+    color: #FFFFFF !important;
+    background-color: #a8bc7b;
+    border-bottom: 1px solid #9db36a;
+}
+
+.box.border > .box-title, .box.solid > .box-title {
+    padding: 8px 10px 2px;
+    min-height: 30px;
+    margin-bottom: 0;
+}
+
+.box.border.green > .box-title h4 {
+    color: #FFFFFF !important;
+}
+.box.border > .box-title h4, .box.solid > .box-title h4 {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 7px;
+}
+.box .box-title h4 {
+    font-family: 'Open Sans';
+}
+
+.box.border.green > .box-title h4 i {
+    color: #FFFFFF !important;
+}
+.box.border > .box-title h4 i, .box.solid > .box-title h4 i {
+    margin-right: 10px;
 }
