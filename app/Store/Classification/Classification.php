@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Classification extends BaseRepository
 {
-    //
+	protected $fillable = ['name'];
 }
