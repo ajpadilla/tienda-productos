@@ -10,19 +10,10 @@
 					</a>
 				</li>
 				<li  data-toggle="collapse" data-target="#products" class="collapsed active">
-					<a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+					<a href="#"><i class="fa fa-gift fa-lg"></i>Products<span class="arrow"></span></a>
 				</li>
 				<ul class="sub-menu collapse" id="products">
-					<li class="active"><a href="#">CSS3 Animation</a></li>
-					<li><a href="#">General</a></li>
-					<li><a href="#">Buttons</a></li>
-					<li><a href="#">Tabs & Accordions</a></li>
-					<li><a href="#">Typography</a></li>
-					<li><a href="#">FontAwesome</a></li>
-					<li><a href="#">Slider</a></li>
-					<li><a href="#">Panels</a></li>
-					<li><a href="#">Widgets</a></li>
-					<li><a href="#">Bootstrap Model</a></li>
+					<li class="active"><a href="#">Index</a></li>
 				</ul>
 
 				<li data-toggle="collapse" data-target="#service" class="collapsed">
@@ -43,7 +34,6 @@
 					<li>New New 2</li>
 					<li>New New 3</li>
 				</ul>
-
 
 				<li>
 					<a href="#">
