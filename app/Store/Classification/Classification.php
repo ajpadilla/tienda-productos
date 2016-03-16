@@ -1,6 +1,7 @@
+
 <?php
 
-namespace App;
+namespace App\Store\Classification;
 
 use Illuminate\Database\Eloquent\Model;
 
