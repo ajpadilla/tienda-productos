@@ -33,4 +33,5 @@ Route::group(['middleware' => ['web']], function () {
 
     //Route for classification
     Route::get('admin/classification', 'ClassificationController@index');
+    Route::post('admin/classification/store', 'ClassificationController@store');
 });
