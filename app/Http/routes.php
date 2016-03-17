@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.partials._content');
-});
+	Route::get('/', function () {
+    	return view('layouts.partials._content');
+	});
+
 
 /*
 |--------------------------------------------------------------------------
