@@ -10,7 +10,6 @@ new Vue({
 	},
 	validators:{
 		checkNameClassification: {
-			message: '¡El nombre ya se encuentra registrado!',
 			check: function (val) {
 				return false;
 			}
@@ -42,6 +41,7 @@ new Vue({
 		closeCustomModal: function() {
 			this.showCustomModal = false;
 			this.showErrors = false;
+			this.nameClassification = "";
 		}
 		,
 		closeResponseModal: function() {
