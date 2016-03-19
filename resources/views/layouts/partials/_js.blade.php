@@ -4,5 +4,7 @@
 <script type="text/javascript"  src="{{ URL::asset('js/node_modules/vue-strap/dist/vue-strap.min.js') }}"></script>
 <script type="text/javascript"  src="{{ URL::asset('js/node_modules/vue-resource/dist/vue-resource.min.js') }}">
 </script>
+<script type="text/javascript"  src="{{ URL::asset('js/node_modules/vue-validator-2.0.0-beta.3/dist/vue-validator.min.js') }}">
+</script>
 <script type="text/javascript"  src="{{ URL::asset('js/app.js') }}"></script>
 
