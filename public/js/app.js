@@ -8,6 +8,14 @@ new Vue({
 		messageResponse: '',
 		showErrors: false
 	},
+	validators:{
+		checkNameClassification: {
+			message: '¡El nombre ya se encuentra registrado!',
+			check: function (val) {
+				return false;
+			}
+		},
+	},
 	methods:{
 		createNewClassification: function() 
 		{
