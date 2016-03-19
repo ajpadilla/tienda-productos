@@ -7,7 +7,7 @@
 	<div class="col-sm-12">
 		<div class="page-header">		
 			<div class="clearfix">
-				<h3 class="content-title pull-left">Lista de Classification de productos</h3>
+				<h3 class="content-title pull-left">Lista de clasificación de productos</h3>
 			</div>
 			<div class="description">Clasificación</div>
 		</div>
@@ -77,19 +77,53 @@
 
 		<modal :show.sync="showCustomModal" effect="fade" width="400">
 			<div slot="modal-header" class="modal-header">
-				<button type="button" class="close" @click='showCustomModal=false'>
+				<button type="button" class="close" @click='closeCustomModal'>
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</button>
 				<h4 class="modal-title">Crear Nueva Clasificación</h4>
 			</div>
 			<div slot="modal-body" class="modal-body">
-				<div class="form-group">
-					<input class="form-control " type="text" placeholder="Nombre">
+			<validator name="validation1">
+				<form novalidate>
+					<meta id="_token" value="{{ csrf_token() }}">
+					<div class="name-field form-group">
+			        	<input id="name" class="form-control" v-model="nameClassification" type="text" placeholder="Nombre" v-validate:name="['required','checkNameClassification']">
+			      	</div>
+					<div class="errors" v-show="showErrors">
+						<p v-if="$validation1.name.required">¡Nombre requerido!</p>
+						<p v-if="$validation1.name.checkNameClassification">¡Nombre existente!</p>
+						<!--<validator-errors :validation="$validation1"></validator-errors>-->
+					</div>
+				</form>
+			</validator>
+			</div>
+			<div slot="modal-footer" class="modal-footer">
+				<button  type="submit" value="send" class="btn btn-primary" @click='createNewClassification'>Crear</button>
+				<button type="button" class="btn btn-danger" @click='closeCustomModal'>Cancelar</button>
+			</div>
+		</modal>
+
+		<modal :show.sync="showResponseModal" effect="fade" width="400">
+			<div slot="modal-header" class="modal-header">
+				<button type="button" class="close" @click='closeResponseModal'>
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title">Respuesta del servidor</h4>
+			</div>
+			<div slot="modal-body" class="modal-body">
+				<div v-if="errorsResponse.length > 0">
+					<ul class="list-group" v-for='error in errorsResponse'>
+						<li class="list-group-item">@{{ error }}</li>
+					</ul>
+				</div>
+				<div v-else>
+					<p>@{{ messageResponse }}</p>
 				</div>
 			</div>
 			<div slot="modal-footer" class="modal-footer">
-				<button type="button" class="btn btn-primary" @click='showCustomModal=false'>Crear</button>
-				<button type="button" class="btn btn-danger" @click='showCustomModal=false'>Cancelar</button>
+			<button type="button" class="btn btn-warning btn-lg" style="width: 100%;" @click='closeResponseModal'>
+				<span class="glyphicon glyphicon-ok-sign">
+				</span>Close
 			</div>
 		</modal>
 
