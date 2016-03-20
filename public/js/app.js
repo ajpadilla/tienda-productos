@@ -9,30 +9,6 @@ new Vue({
 		showErrors: false,
 		checking: false,
 	},
-	validators:{
-		exist: function (val) {
-	      this.vm.checking = true // spinner on
-	      return fetch('/admin/checkNameClassified/',{
-	      	 method: 'post',
-	        headers: {
-	          'Accept': 'application/json',
-	          'Content-Type': 'application/json'
-	        },
-	        body: JSON.stringify({
-	          name: val
-	        })
-	      }).then((res) => { // done
-	      	console.log(res.json());
-	        //this.vm.checking = false // spinner off
-	        return res.json()
-	      }).then((json) => {
-	      		console.log(Promise.resolve());
-	        return Promise.resolve()
-	      }).catch((error) => {
-	        return Promise.reject(error.message)
-	      })
-	    }
-	},
 	methods:{
 		createNewClassification: function() 
 		{
@@ -73,7 +49,8 @@ new Vue({
 			data: function () {
 				return{
 					listClassifieds: [],
-					searchTextClassified: ''
+					searchQueryClassified: '',
+					order: 1
 				}
 			},
 			props:['items'],
@@ -84,8 +61,6 @@ new Vue({
 						console.log(response);
 						this.listClassifieds = response.data.classifications;
 					}
-				}, function(response) {
-
 				});
 			}
 		},
