@@ -277,6 +277,17 @@ body {
     border-bottom-left-radius: 3px;
 }
 
+div.dataTables_filter label {
+    float: right;
+    font-weight: normal;
+}
+
+div.dataTables_length label {
+    float: left;
+    text-align: left;
+    font-weight: normal;
+}
+
 .table-responsive .table-footer .table-info {
     padding-top: 30px;
 }
