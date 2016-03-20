@@ -23,9 +23,25 @@ class ClassificationController extends Controller
     public function store(StoreClassificationRequest $request)
     {
     	$classification = $this->repository->create($request->all());
-    	$this->setSuccess(true);
+    	$this->setSuccess(($classification ? true : false));
 		$this->addToResponseArray('classification', $classification);
 		return $this->getResponseArrayJson();
     }
+
+    public function checkName(Request $request)
+    {
+    	$classification = $this->repository->getModel()->whereName($request->input('name'))->first();
+    	$this->setSuccess(($classification ? true : false));
+    	$this->addToResponseArray('classification', $classification);
+		return $this->getResponseArrayJson();
+    }
    
+    public function listAll()
+    {
+    	$classifications = $this->repository->getAll();
+    	$this->setSuccess(($classifications ? true : false));
+    	$this->addToResponseArray('classifications', $classifications);
+		return $this->getResponseArrayJson();
+    }
+
 }
