@@ -36,5 +36,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('admin/classification', 'ClassificationController@index');
     Route::post('admin/classification/store', 'ClassificationController@store');
     Route::get('admin/checkNameClassified', 'ClassificationController@checkName');
-    Route::get('admin/listAllClassifieds', 'ClassificationController@listAll');
+    Route::get('admin/listAllClassifieds/{numberItems}', 'ClassificationController@listAll');
 });
