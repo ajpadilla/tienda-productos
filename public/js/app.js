@@ -40,7 +40,7 @@ new Vue({
 		,
 		closeResponseModal: function() {
 			this.showResponseModal = false;
-		}
+		},
 	},
 	components:{
 		modal: VueStrap.modal,
@@ -50,18 +50,62 @@ new Vue({
 				return{
 					listClassifieds: [],
 					searchQueryClassified: '',
-					order: 1
+					order: 1,
+					numberItems: 10,
+					currentPage: 0,
+					lastPage: 0,
+					fromPage: 0,
+					toPage: 0,
+					totalItems:0,
+					buttonDisabled: false,
+					linkNextDisabled: false,
+					linkPreviousDisabled: false
 				}
 			},
 			props:['items'],
 			
 			created: function() {
-				this.$http.get('/admin/listAllClassifieds').then(function(response) {
-					if(response.data.success){
-						console.log(response);
-						this.listClassifieds = response.data.classifications;
+				this.currentPage = 1;
+				this.uploadItems();
+			},
+
+			methods:{
+				uploadItems: function() {
+					this.$http.get('/admin/listAllClassifieds/'+this.numberItems+'?page='+this.currentPage).then(function(response) {
+						if(response.data.success){
+							console.log(response);
+							this.listClassifieds = response.data.classifications.data;
+							this.currentPage = response.data.classifications.current_page;
+							this.fromPage = response.data.classifications.from;
+							this.toPage = response.data.classifications.to;
+							this.totalItems = response.data.classifications.total;
+							this.lastPage = response.data.classifications.last_page;
+						}
+					});
+				},
+				loadMoreItems: function(indexPage) {
+					this.currentPage = indexPage;
+					this.uploadItems();
+				},
+				nextItems: function() {
+					if (this.currentPage < this.lastPage) {
+						this.currentPage+=1;
+						this.uploadItems();
+						return true;
 					}
-				});
+					this.linkNextDisabled = true;
+				},
+				previousItems: function() {
+					if (this.currentPage > 1) {
+						this.currentPage-=1;
+						this.uploadItems();
+						return true;
+					}
+					this.linkPreviousDisabled = true;
+				},
+				selectMoreItems: function() {
+					this.uploadItems();
+				}
 			}
 		},
 		
