@@ -12,14 +12,14 @@
 				<a href="#"><i class="fa fa-gift fa-lg"></i>Products<span class="arrow"></span></a>
 			</li>
 			<ul class="sub-menu collapse" id="products">
-				<li class="active"><a href="#">Index</a></li>
+				<li class=""><a href="{{ url('admin/products') }}">Index</a></li>
 			</ul>
 
 			<li data-toggle="collapse" data-target="#service" class="collapsed">
 				<a href="#"><i class="fa fa-globe fa-lg"></i> Classification <span class="arrow"></span></a>
 			</li>  
 			<ul class="sub-menu collapse" id="service">
-				<li>Index</li>
+				<li><a href="{{ url('admin/classification') }}">Index</a></li>
 			</ul>
 
 
