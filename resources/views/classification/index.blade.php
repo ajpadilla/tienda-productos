@@ -30,28 +30,6 @@
 						<div class="col-sm-12">
 							<div class="table-responsive">
 								<classifications></classifications>
-								<div class="clearfix"></div>
-								<div class="table-footer">
-									<div class="col col-xs-4">
-										<div class="table-info">Del 1 al 6 de 6 registros</div>
-									</div>
-									<div class="col col-xs-8">
-										<ul class="pagination pull-right">
-											<li class="disabled">
-												<a href="#">
-													<span class="glyphicon glyphicon-chevron-left"></span>
-												</a>
-											</li>
-											<li class="active"><a href="#">1</a></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">4</a></li>
-											<li><a href="#">5</a></li>
-											<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-										</ul>
-									</div>
-								</div>
-								
 							</div>
 						</div>
 					</div>
@@ -119,52 +97,74 @@
 		<div class="col-sm-6">
 			<div class="dataTables_length">
 				<label>Mostrar: 
-					<select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
-						<option value="10">10</option>
-						<option value="25">25</option>
-						<option value="50">50</option><option value="100">100</option>
-					</select>
-				</label>
-			</div>
-		</div>
-		<div class="col-sm-6">
-			<div id="datatable_filter" class="dataTables_filter">
-				<label>Buscar: 
-					<input type="search" class="form-control input-sm" v-model="searchQueryClassified">
-				</label>
-			</div>
+					<select name="datatable_length" aria-controls="datatable" class="form-control input-sm" 
+					v-model="numberItems" @click="selectMoreItems">
+					<option value="10" selected>10</option>
+					<option value="25">25</option>
+					<option value="50">50</option><option value="100">100</option>
+				</select>
+			</label>
 		</div>
 	</div>
+	<div class="col-sm-6">
+		<div id="datatable_filter" class="dataTables_filter">
+			<label>Buscar: 
+				<input type="search" class="form-control input-sm" v-model="searchQueryClassified">
+			</label>
+		</div>
+	</div>
+</div>
 
-	<table class="table table-bordered table-striped"> 
-		<thead>
-			<tr>
-				<th class="text-center"  @click="order = order * -1">
-					Nombre
-					<span class="arrow">
-						 <i :class="order > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'"></i>
-		          	</span>
-				</th>
-				<th class="text-center"  @click="order = order * -1">
-					Acciones
-					<span class="arrow">
-						 <i :class="order > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'"></i>
-		          	</span>
-				</th>
-			</tr>
-		</thead>
-		<tbody v-for="classification in listClassifieds 
-		| filterBy searchQueryClassified in 'name' 
-		| orderBy 'name' order">
-			<tr>
-				<td>@{{ classification.name }}</td>
-				<td align="center">
-					<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-					<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<table class="table table-bordered table-striped"> 
+	<thead>
+		<tr>
+			<th class="text-center"  @click="order = order * -1">
+				Nombre
+				<span class="arrow">
+					<i :class="order > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'"></i>
+				</span>
+			</th>
+			<th class="text-center"  @click="order = order * -1">
+				Acciones
+				<span class="arrow">
+					<i :class="order > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'"></i>
+				</span>
+			</th>
+		</tr>
+	</thead>
+	<tbody v-for="classification in listClassifieds 
+	| filterBy searchQueryClassified in 'name' 
+	| orderBy 'name' order">
+	<tr>
+		<td>@{{ classification.name }}</td>
+		<td align="center">
+			<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+			<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+		</td>
+	</tr>
+</tbody>
+</table>
+<div class="clearfix"></div>
+<div class="table-footer">
+	<div class="col col-xs-4">
+	<div class="table-info">Del @{{ fromPage }} al @{{ toPage }} de @{{ totalItems }} registros</div>
+	</div>
+	<div class="col col-xs-8">
+		<ul class="pagination pull-right">
+		<!--class="disabled"-->
+			<li :class="{'disabled': linkPreviousDisabled}">
+				<a href="#" v-on:click="previousItems"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			</li>
+			<!--<li class="active"><a href="#">1</a></li>-->
+			<li v-for="item in lastPage" v-on:click="loadMoreItems($index+1)">
+				<a href="#">@{{ $index + 1 }}</a>
+			</li>
+			<li :class="{'disabled': linkNextDisabled}">
+				<a href="#" v-on:click="nextItems"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</li>
+		</ul>
+	</div>
+</div>
 </template>
 
 @endsection
