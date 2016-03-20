@@ -36,9 +36,9 @@ class ClassificationController extends Controller
 		return $this->getResponseArrayJson();
     }
    
-    public function listAll()
+    public function listAll($numberItems = 10)
     {
-    	$classifications = $this->repository->getAll();
+    	$classifications = $this->repository->getModel()->paginate($numberItems);
     	$this->setSuccess(($classifications ? true : false));
     	$this->addToResponseArray('classifications', $classifications);
 		return $this->getResponseArrayJson();
