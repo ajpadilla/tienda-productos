@@ -29,23 +29,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="table-responsive">
-								<table class="table table-bordered table-striped"> 
-									<thead>
-										<tr>
-											<th class="text-center">Nombre</th>
-											<th class="text-center">Acciones</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Mohsin</td>
-											<td align="center">
-												<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-												<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								<classifications></classifications>
 								<div class="clearfix"></div>
 								<div class="table-footer">
 									<div class="col col-xs-4">
@@ -87,11 +71,11 @@
 				<form novalidate>
 					<meta id="_token" value="{{ csrf_token() }}">
 					<div class="name-field form-group">
-			        	<input id="name" class="form-control" v-model="nameClassification" type="text" placeholder="Nombre" v-validate:name="['required','checkNameClassification']">
+			        	<input id="name" class="form-control" v-model="nameClassification" type="text" placeholder="Nombre" v-validate:name="['required']">
 			      	</div>
 					<div class="errors" v-show="showErrors">
 						<p v-if="$validation1.name.required">¡Nombre requerido!</p>
-						<p v-if="$validation1.name.checkNameClassification">¡Nombre existente!</p>
+						<!--<p v-if="$validation1.name.exist">¡Nombre existente!</p>
 						<!--<validator-errors :validation="$validation1"></validator-errors>-->
 					</div>
 				</form>
@@ -129,6 +113,59 @@
 
 	</div>
 </div>
+
+<template id="classifications-templete">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="dataTables_length">
+				<label>Mostrar: 
+					<select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
+						<option value="10">10</option>
+						<option value="25">25</option>
+						<option value="50">50</option><option value="100">100</option>
+					</select>
+				</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div id="datatable_filter" class="dataTables_filter">
+				<label>Buscar: 
+					<input type="search" class="form-control input-sm" v-model="searchQueryClassified">
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<table class="table table-bordered table-striped"> 
+		<thead>
+			<tr>
+				<th class="text-center"  @click="order = order * -1">
+					Nombre
+					<span class="arrow">
+						 <i :class="order > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'"></i>
+		          	</span>
+				</th>
+				<th class="text-center"  @click="order = order * -1">
+					Acciones
+					<span class="arrow">
+						 <i :class="order > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'"></i>
+		          	</span>
+				</th>
+			</tr>
+		</thead>
+		<tbody v-for="classification in listClassifieds 
+		| filterBy searchQueryClassified in 'name' 
+		| orderBy 'name' order">
+			<tr>
+				<td>@{{ classification.name }}</td>
+				<td align="center">
+					<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+					<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</template>
 
 @endsection
 
