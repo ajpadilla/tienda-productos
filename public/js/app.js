@@ -8,6 +8,11 @@ new Vue({
 		messageResponse: '',
 		showErrors: false,
 		checking: false,
+		modalTitle: '',
+		modalCreateClassification: false,
+		modalEditClassification: false,
+		classificationItem: 0
+
 	},
 	methods:{
 		createNewClassification: function() 
@@ -31,6 +36,44 @@ new Vue({
 			}else{
 				this.showErrors = true;
 			}
+		},
+		editClassification:function() {
+			//console.log(this.classificationItem);
+			if(this.$validation1.valid)
+			{
+				Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#_token').getAttribute('value');
+				this.$http.post('/admin/classification/update/'+this.classificationItem.id,{name: this.nameClassification}).then(function (response) {
+					console.log(response);
+					this.errorsResponse = [];
+					this.showResponseModal = true;
+					this.messageResponse = 'Clasificación' +' '+ this.nameClassification +" "+'actualizado correctamente';
+					this.nameClassification = '';
+				}, function (errors) {
+					if(errors.data) 
+					{
+						this.showResponseModal = true;
+						var errorsR = [];
+						$.each(errors.data, function(index,value) {
+							errorsR.push(value);
+						} );
+						this.errorsResponse = errorsR;
+					}
+				});
+			}else{
+				this.showErrors = true;
+			}
+		},
+		openModalCreateClassification: function() {
+			this.showCustomModal = true;
+			this.modalTitle = "Crear Nueva Clasificación";
+			this.modalCreateClassification = true;
+			this.modalEditClassification = false;
+		},
+		openModalEditClassification: function() {
+			this.showCustomModal = true;
+			this.modalTitle = "Editar Clasificación";
+			this.modalCreateClassification = false;
+			this.modalEditClassification = true;
 		},
 		closeCustomModal: function() {
 			this.showCustomModal = false;
@@ -59,7 +102,7 @@ new Vue({
 					totalItems:0,
 					buttonDisabled: false,
 					linkNextDisabled: false,
-					linkPreviousDisabled: false
+					linkPreviousDisabled: false,
 				}
 			},
 			props:['items'],
@@ -73,7 +116,7 @@ new Vue({
 				uploadItems: function() {
 					this.$http.get('/admin/listAllClassifieds/'+this.numberItems+'?page='+this.currentPage).then(function(response) {
 						if(response.data.success){
-							console.log(response);
+							//console.log(response);
 							this.listClassifieds = response.data.classifications.data;
 							this.currentPage = response.data.classifications.current_page;
 							this.fromPage = response.data.classifications.from;
@@ -105,6 +148,21 @@ new Vue({
 				},
 				selectMoreItems: function() {
 					this.uploadItems();
+				},
+				openModalEdit:function(itemId) {
+					this.$parent.openModalEditClassification();
+					this.$http.get('/admin/getData/'+itemId).then(function(response) {
+						if (response.data.success) {
+							this.$parent.classificationItem = response.data.classification;
+							this.$parent.nameClassification = response.data.classification.name;
+						}
+					},
+					function(response) {
+						console.log(response);
+					});
+				},
+				editItem: function() {
+					
 				}
 			}
 		},
