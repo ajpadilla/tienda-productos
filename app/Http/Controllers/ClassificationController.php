@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Store\Classification\ClassificationRepository;
 use App\Http\Requests\StoreClassificationRequest;
+use App\Http\Requests\UpdateClassificationRequest;
 
 class ClassificationController extends Controller
 {
@@ -43,5 +44,25 @@ class ClassificationController extends Controller
     	$this->addToResponseArray('classifications', $classifications);
 		return $this->getResponseArrayJson();
     }
+
+    public function getData($id)
+    {
+    	$classification = $this->repository->get($id);
+    	$this->setSuccess(($classification ? true : false));
+    	$this->addToResponseArray('classification', $classification);
+		return $this->getResponseArrayJson();
+    }
+
+    public function update(UpdateClassificationRequest $request, $id)
+    {
+    	$input = $request->all();
+    	$input['classification_id'] = $id;
+    	$classification = $this->repository->update($input);
+    	$this->setSuccess(($classification ? true : false));
+    	$this->addToResponseArray('classification', $classification);
+		return $this->getResponseArrayJson();
+    }
+
+
 
 }
