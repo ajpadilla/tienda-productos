@@ -16,7 +16,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="row">
-			<button class="btn btn-primary pull-right" v-on:click="showCustomModal = true">
+			<button class="btn btn-primary pull-right" v-on:click="openModalCreateClassification">
 				Crear Clasificación
 			</button>
 		</div>
@@ -42,7 +42,7 @@
 				<button type="button" class="close" @click='closeCustomModal'>
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</button>
-				<h4 class="modal-title">Crear Nueva Clasificación</h4>
+				<h4 class="modal-title">@{{ modalTitle }}</h4>
 			</div>
 			<div slot="modal-body" class="modal-body">
 			<validator name="validation1">
@@ -60,7 +60,8 @@
 			</validator>
 			</div>
 			<div slot="modal-footer" class="modal-footer">
-				<button  type="submit" value="send" class="btn btn-primary" @click='createNewClassification'>Crear</button>
+				<button  v-show="modalCreateClassification" type="submit" value="send" class="btn btn-primary" @click='createNewClassification'>Crear</button>
+				<button  v-show="modalEditClassification" type="submit" value="send" class="btn btn-primary" @click='editClassification'>Editar</button>
 				<button type="button" class="btn btn-danger" @click='closeCustomModal'>Cancelar</button>
 			</div>
 		</modal>
@@ -138,7 +139,7 @@
 	<tr>
 		<td>@{{ classification.name }}</td>
 		<td align="center">
-			<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+			<a class="btn btn-default" v-on:click="openModalEdit(classification.id)"><em class="fa fa-pencil"></em></a>
 			<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
 		</td>
 	</tr>
