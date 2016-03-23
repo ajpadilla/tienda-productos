@@ -89,7 +89,6 @@
 				</span>Close
 			</div>
 		</modal>
-
 	</div>
 </div>
 
@@ -140,7 +139,7 @@
 		<td>@{{ classification.name }}</td>
 		<td align="center">
 			<a class="btn btn-default" v-on:click="openModalEdit(classification.id)"><em class="fa fa-pencil"></em></a>
-			<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+			<a class="btn btn-danger" v-on:click="openModalDelete(classification)"><em class="fa fa-trash"></em></a>
 		</td>
 	</tr>
 </tbody>

@@ -64,5 +64,10 @@ class ClassificationController extends Controller
     }
 
 
+    public function delete($id)
+    {
+		$this->setSuccess($this->repository->delete($id));
+		return $this->getResponseArrayJson();
+    }
 
 }

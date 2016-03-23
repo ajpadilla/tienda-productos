@@ -149,8 +149,7 @@ new Vue({
 				selectMoreItems: function() {
 					this.uploadItems();
 				},
-				openModalEdit:function(itemId) {
-					this.$parent.openModalEditClassification();
+				loadData: function(itemId) {
 					this.$http.get('/admin/getData/'+itemId).then(function(response) {
 						if (response.data.success) {
 							this.$parent.classificationItem = response.data.classification;
@@ -161,8 +160,26 @@ new Vue({
 						console.log(response);
 					});
 				},
-				editItem: function() {
-					
+				openModalEdit:function(itemId) {
+					this.$parent.openModalEditClassification();
+					this.loadData(itemId);
+				},
+				openModalDelete: function(item) {
+					this.showDeleteModal = true;
+					this.$parent.classificationItem = item;
+				},
+				closeModalDelete: function() {
+					this.showDeleteModal = false;
+				},
+				deleteItem: function() {
+					this.$http.get('/admin/classification/delete/'+this.$parent.classificationItem.id).then(function(response) {
+						if (response.data.success) {
+							this.listClassifieds.$remove(this.$parent.classificationItem);
+						}
+					},
+					function(response) {
+						console.log(response);
+					});
 				}
 			}
 		},
